@@ -14,8 +14,16 @@ const ExpenseSchema = new Schema({
     required : true
    },
   date:{
-    type : Date,
-    default : Date.now
+    type : Number,
+    default : 1
+  },
+  month:{
+    type : Number,
+    default : 1
+  },
+  year:{
+    type : Number,
+    default : 2001
   }
 })
 

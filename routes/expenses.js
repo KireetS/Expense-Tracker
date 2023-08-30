@@ -15,7 +15,7 @@ router.get("/getnotes",fetchUser,async(req,res)=>{
   }
 })
 
-router.post("/add" , [
+router.post("/add" ,fetchUser, [
   body('name').exists(),
   body('money').exists()
 ],fetchUser , async (req , res) =>{
