@@ -23,10 +23,10 @@ router.post("/add" ,fetchUser, [
   if(!errors.isEmpty()){
     return res.status(400).json({error : errors.array()})
   }
-  const {name ,date, money} = req.body
+  const {name ,date,month , year ,  money} = req.body
   try{
     let expense = new Expense({
-      name ,date, money , user : req.user.id
+      name ,date,month,year, money , user : req.user.id
     })
 
     let savedExpense = await expense.save()
