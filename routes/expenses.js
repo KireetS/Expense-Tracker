@@ -57,10 +57,13 @@ router.delete("/delete/:id",fetchUser , async(req,res)=>{
 router.put("/update/:id"  , fetchUser , async(req,res) =>{
   let expenseId = req.params.id
   try{
-    let {name , money} =  req.body
+    let {name , money , date,month,year} =  req.body
     let updatedExpense = {}
     if(name)updatedExpense.name = name
     if(money)updatedExpense.money = money
+    if(date)updatedExpense.date = date
+    if(month)updatedExpense.month = month
+    if(year)updatedExpense.year = year
     let expense = await Expense.findById(expenseId)
     if(!expense){
       return res.json({msg : " NOT FOUND "})

@@ -18,8 +18,8 @@ const ExpenseSchema = new Schema({
     default : 1
   },
   month:{
-    type : Number,
-    default : 1
+    type : String,
+    default : "January"
   },
   year:{
     type : Number,
