@@ -7,7 +7,17 @@ const { findById, findByIdAndUpdate } = require("../models/User");
 //fetching all notes
 router.get("/getnotes",fetchUser,async(req,res)=>{
   try{
-    const expenses = await Expense.find({user : req.user.id})
+    const user = req.user.id;
+    let query = { user };
+
+    if (req.query.year) {
+      query.year = req.query.year;
+    }
+
+    if (req.query.month) {
+      query.month = req.query.month;
+    }
+    const expenses = await Expense.find(query)
   res.json(expenses)
   }catch(error){
     console.error("error fetching expenses " ,error)
