@@ -17,6 +17,10 @@ router.get("/getnotes",fetchUser,async(req,res)=>{
     if (req.query.month) {
       query.month = req.query.month;
     }
+
+    if (req.query.category) {
+      query.category = req.query.category;
+    }
     const expenses = await Expense.find(query)
   res.json(expenses)
   }catch(error){
@@ -33,10 +37,10 @@ router.post("/add" ,fetchUser, [
   if(!errors.isEmpty()){
     return res.status(400).json({error : errors.array()})
   }
-  const {name ,date,month , year ,  money} = req.body
+  const {name ,date,month , year ,category,  money} = req.body
   try{
     let expense = new Expense({
-      name ,date,month,year, money , user : req.user.id
+      name ,category,date,month,year, money , user : req.user.id
     })
 
     let savedExpense = await expense.save()
@@ -67,13 +71,14 @@ router.delete("/delete/:id",fetchUser , async(req,res)=>{
 router.put("/update/:id"  , fetchUser , async(req,res) =>{
   let expenseId = req.params.id
   try{
-    let {name , money , date,month,year} =  req.body
+    let {name ,category, money , date,month,year} =  req.body
     let updatedExpense = {}
     if(name)updatedExpense.name = name
     if(money)updatedExpense.money = money
     if(date)updatedExpense.date = date
     if(month)updatedExpense.month = month
     if(year)updatedExpense.year = year
+    if(category)updatedExpense.category = category
     let expense = await Expense.findById(expenseId)
     if(!expense){
       return res.json({msg : " NOT FOUND "})

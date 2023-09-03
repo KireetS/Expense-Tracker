@@ -24,6 +24,10 @@ const ExpenseSchema = new Schema({
   year:{
     type : Number,
     default : 2001
+  },
+  category:{
+    type: String,
+    default : "general"
   }
 })
 
