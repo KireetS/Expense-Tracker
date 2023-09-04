@@ -3,7 +3,7 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const User = require("./../models/User")
 const jwt = require('jsonwebtoken');
-const fetchUser = require("./../middleware/fetchUser")
+const fetchUser = require("../middleware/fetchUser")
 const { body, validationResult } = require('express-validator');
 
 router.post("/create" ,[
